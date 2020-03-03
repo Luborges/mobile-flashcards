@@ -1,8 +1,26 @@
+//React
 import React from 'react';
-//import { StyleSheet, Text, View } from 'react-native';
+
+//Native
+import { StatusBar } from 'react-native';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+//Redux
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+
+//Components
 import Home from './views/Home';
-import {createSwitchNavigator, createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+
+function FlashcardsStatusBar ({ backgroundColor, ...props }) {
+  return (
+    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -29,6 +47,13 @@ const createRootNavigator = logged => {
 export default class App extends React.Component {
   render() {
     const Layout = createRootNavigator(true);
-    return <Layout />;
+    return (
+      <Provider store={createStore(reducer)}>
+        <View style={{flex: 1}}>
+          <FlashcardsStatusBar />
+          <Layout />
+        </View>
+      </Provider>
+    );
   }
 }
