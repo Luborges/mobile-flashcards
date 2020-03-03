@@ -9,7 +9,7 @@ export function receiveDecks (decks) {
     }
 }
 
-export function receiveDecks (deck) {
+export function addDeck (deck) {
     return {
         type: ADD_DECK,
         deck,

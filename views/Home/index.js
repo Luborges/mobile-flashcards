@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { receiveDecks, addDeck, removeDeck } from '../../actions';
 
 // Api
-import { createDeck, fetchDeckResults, deleteDeck } from '../utils/api';
+import { createDeck, fetchDeckResults, deleteDeck } from '../../utils/api';
 
 // Styles
 import {
@@ -26,7 +26,7 @@ class App extends Component () {
     }
   }
 
-  compoentDidMount = () => {
+  compoentDidMount(){
     const { decks, dispatch } = this.props;
     if (!decks) {
       fetchDeckResults()
@@ -37,14 +37,14 @@ class App extends Component () {
     }
   }
   
-  createNewDeck = (evt) => {
+  createNewDeck(evt) {
     const key = timeToString();
     const deck = evt.target.value;
     createDeck({ key, deck });
     dispatch(addDeck({ key, deck }));
   }
 
-  deleteDeck = (key) => {
+  deleteDeck(key) {
     deleteDeck().then(() => {
       dispatch(removeDeck(key));
     });
