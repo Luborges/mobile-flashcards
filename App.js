@@ -2,7 +2,8 @@
 import React from 'react';
 
 //Native
-import { StatusBar } from 'react-native';
+import { StatusBar, View } from 'react-native';
+import Constants from 'expo-constants';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 

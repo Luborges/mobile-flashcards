@@ -14,12 +14,13 @@ import { createDeck, fetchDeckResults, deleteDeck } from '../../utils/api';
 // Styles
 import {
   Container,
+  Card,
   Text
 } from './styles';
 
-class App extends Component () {
+class App extends Component {
 
-  constructor() {
+  constructor(props) {
     super(props);
     this.state = {
       ready: false,
@@ -51,16 +52,17 @@ class App extends Component () {
   }
 
   render() {
+    const { ready } = this.state;
     if (ready === false) {
       return <AppLoading />;
     }
 
     return (
-      <Container>
+        <Card>
           <Text>
             Home
           </Text>
-      </Container>
+        </Card>
     );
   }
 }
