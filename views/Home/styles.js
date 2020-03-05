@@ -5,25 +5,41 @@ export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  /* background-color: #069;*/
-  align-self: stretch;
 `;
 
-export const Text = styled.Text`
-  color: #fff;
+export const Title = styled.Text`
+  flex: 1;
+  color: #000;
   font-weight: 500;
-  font-family: 'Roboto, sans-serif';
-  font-size: ${props => (props.size ? props.size : 18)};
+  font-size: 33px;
 `;
 
 export const Card = styled.View`
-  margin: 20px;
+  margin-top: 10px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
-export const CardBody = styled.View`
-  justify-content: center;
-  align-items: center;
+export const FlatList = styled.FlatList`
+  flex: 1;
+`;
+
+export const AddDeck = styled.TouchableOpacity`
+  margin: 5px;
+`;
+
+export const ButtonText = styled.Text`
+  
+`;
+
+export const NewDeckContainer = styled.View`
   flex-direction: row;
+  padding: 5px;
+`;
+
+export const TextInput = styled.TextInput`
+  width: 150px;
+  border: 1px solid transparent;
+  border-bottom-color: #ccc;
 `;
