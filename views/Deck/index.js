@@ -37,6 +37,7 @@ class Home extends Component {
               <Text>
                 cards: {cards.length}
               </Text>
+              
           </Container>
       )
   }
@@ -46,7 +47,7 @@ function mapStateToProps ({ decks }, { navigation }) {
     const { name } = navigation.state.params;
     return {
         name,
-        deck: decks[name],
+        deck: JSON.parse(decks)[name],
     }
 }
   

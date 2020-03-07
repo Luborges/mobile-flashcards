@@ -18,11 +18,10 @@ import DeckCard from '../../components/DeckCard';
 import {
   AddDeck,
   ButtonText,
+  ButtonView,
   Container,
   Card,
   FlatList,
-  NewDeckContainer,
-  TextInput,
   Title
 } from './styles';
 
@@ -45,17 +44,6 @@ class Home extends Component {
       })));
     }
   }
-  
-  createNewDeck() {
-    const { input } = this.state;
-    const { dispatch } = this.props;
-    if (input && input!=='') {
-      const newCard = { key: input, name: input, cards: [] };
-      createDeck(newCard);
-      dispatch(addDeck(newCard));
-      this.props.navigation.navigate('Deck', { name: input })
-    }
-  }
 
   deleteDeck(key) {
     deleteDeck().then(() => {
@@ -63,20 +51,18 @@ class Home extends Component {
     });
   }
 
-  handleTextChange = (input) => {
-    this.setState(() => ({
-      input
-    }));
+  renderItem = ({ item }) => {
+    const { decks } = this.props;
+    return <DeckCard deck={decks[item]} navigation={this.props.navigation} />
   }
 
-  renderItem = ({ item }) => {
-    return <DeckCard deck={item} navigation={this.props.navigation} />
+  addDeck = () => {
+    this.props.navigation.navigate('CreateDeck');
   }
 
   render() {
-    const { ready, input } = this.state;
+    const { ready } = this.state;
     const { decks } = this.props;
-    //console.log(decks);
     
     if (ready === false) {
       return <AppLoading />;
@@ -86,16 +72,13 @@ class Home extends Component {
       <Container>
         <Card>
           <Title>Deck List</Title>
-          <NewDeckContainer>
-            <TextInput 
-              value={input}
-              onChange={evt => this.handleTextChange(evt.nativeEvent.text)}
-              placeholder={'Create new deck'}
-            />
-            <AddDeck onPress={() => this.createNewDeck()}><ButtonText>+</ButtonText></AddDeck>
-          </NewDeckContainer>
+          <AddDeck onPress={this.addDeck}>
+            <ButtonView>
+              <ButtonText>Add Deck</ButtonText>
+            </ButtonView>
+          </AddDeck>
           <FlatList
-            data={decks}
+            data={Object.keys(decks)}
             renderItem={this.renderItem}>
           </FlatList>
         </Card>
@@ -105,8 +88,10 @@ class Home extends Component {
 }
 
 function mapStateToProps ({ decks }) {
+  const deckList = decks ? JSON.parse(decks) : [];
+
   return {
-      decks: decks || [],
+    decks: deckList,
   }
 }
 

@@ -22,7 +22,7 @@ export const Card = styled.View`
 `;
 
 export const FlatList = styled.FlatList`
-  flex: 1;
+  flex: 3;
 `;
 
 export const AddDeck = styled.TouchableOpacity`
@@ -30,7 +30,13 @@ export const AddDeck = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  
+  color: white;
+`;
+
+export const ButtonView = styled.View`
+  background-color: #4c4c6a;
+  border: 1px solid #4c4c6a;
+  padding: 5px;
 `;
 
 export const NewDeckContainer = styled.View`

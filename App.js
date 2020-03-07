@@ -15,6 +15,7 @@ import reducer from './reducers';
 //Components
 import Home from './views/Home';
 import Deck from './views/Deck';
+import CreateDeck from './views/CreateDeck';
 
 function FlashcardsStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -24,12 +25,25 @@ function FlashcardsStatusBar ({ backgroundColor, ...props }) {
   )
 }
 
+
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#4C4C6A',
+        backgroundColor: '#4c4c6a',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: '#fff',
+      },
+    },
+  },
+  CreateDeck: {
+    screen: CreateDeck,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#4c4c6a',
       },
       headerTitleStyle: {
         fontWeight: 'bold',
@@ -41,7 +55,7 @@ const MainNavigator = createStackNavigator({
     screen: Deck,
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#4C4C6A',
+        backgroundColor: '#4c4c6a',
       },
       headerTitleStyle: {
         fontWeight: 'bold',
@@ -50,6 +64,7 @@ const MainNavigator = createStackNavigator({
     },
   },
 });
+
 
 const createRootNavigator = logged => {
   return createAppContainer(
@@ -70,7 +85,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
-          <FlashcardsStatusBar backgroundColor={'#4C4C6A'} />
+          <FlashcardsStatusBar backgroundColor={'#4c4c6a'} />
           <Layout />
         </View>
       </Provider>

@@ -17,7 +17,7 @@ const Deck = (props) => {
     }
 
     return (
-        <NavigateButton onPress={gotoDeck}>
+        <NavigateButton onPress={() => gotoDeck()}>
             <Card>
                 <Name>{name}</Name>
                 <Total>Cards: {cards.length}</Total>

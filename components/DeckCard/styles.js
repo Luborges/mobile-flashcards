@@ -5,20 +5,23 @@ export const Name = styled.Text`
     color: #000;
     font-weight: 500;
     font-size: 22px;
+    color: white;
 `;
 
 export const Total = styled.Text`
     flex: 1;
     margin-top: 15px;
     font-size: 16px;
-    color: #000;
+    color: white;
 `;
 
 export const Card = styled.View`
-    height: 80px;
-    margin: 5px;
+    width: 200px;
+    height: 90px;
+    margin: 15px;
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid #4c4c6a;
+    background-color: #4c4c6a;
     justify-content: center;
     align-items: center;
 `;

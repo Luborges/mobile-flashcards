@@ -5,21 +5,24 @@ function entries (state = [], action) {
         [RECEIVE_DECKS]: () => {
             return {
                 ...state,
-                ...action.decks,
+                decks: action.decks,
             }
         },
         [ADD_DECK]: () => {
-            let decks = new Array();
-            decks[action.deck.key] = {
-                name: action.deck.name,
-                key: action.deck.key,
-                cards: action.deck.cards,
+            let decks = {
+                [action.deck.key]: {
+                    name: action.deck.key,
+                    cards: action.deck.cards,
+                }
             };
-            console.log(decks)
+            console.log({
+                ...state,
+                decks,
+            })
             console.log('aaa');
             return {
                 ...state,
-                decks
+                decks,
             }
         },
         [REMOVE_DECK]: () => {
