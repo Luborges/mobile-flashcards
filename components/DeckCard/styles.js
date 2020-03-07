@@ -22,3 +22,7 @@ export const Card = styled.View`
     justify-content: center;
     align-items: center;
 `;
+
+export const NavigateButton = styled.TouchableOpacity`
+    
+`;

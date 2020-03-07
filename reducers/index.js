@@ -9,9 +9,17 @@ function entries (state = [], action) {
             }
         },
         [ADD_DECK]: () => {
+            let decks = new Array();
+            decks[action.deck.key] = {
+                name: action.deck.name,
+                key: action.deck.key,
+                cards: action.deck.cards,
+            };
+            console.log(decks)
+            console.log('aaa');
             return {
                 ...state,
-                ...action.deck,
+                decks
             }
         },
         [REMOVE_DECK]: () => {

@@ -14,6 +14,7 @@ import { createDeck, fetchDeckResults, deleteDeck } from '../../utils/api';
 // Styles
 import {
     Container,
+    Title,
     Text
 } from './styles';
 
@@ -27,11 +28,14 @@ class Home extends Component {
   }
 
   render () {
-      const { deck } = this.props;
+      const { name, cards } = this.props.deck;
       return(
           <Container>
+              <Title>
+                  Deck: {name}
+              </Title>
               <Text>
-                  Deck: {deck.name}
+                cards: {cards.length}
               </Text>
           </Container>
       )
@@ -39,9 +43,10 @@ class Home extends Component {
 }
 
 function mapStateToProps ({ decks }, { navigation }) {
-    const { key } = navigation.state.params;
+    const { name } = navigation.state.params;
     return {
-        deck: decks[key],
+        name,
+        deck: decks[name],
     }
 }
   

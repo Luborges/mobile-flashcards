@@ -48,13 +48,13 @@ class Home extends Component {
   
   createNewDeck() {
     const { input } = this.state;
-    
-    /*if (input && input!=='') {
-      const key = timeToString();
-      createDeck({ key, deck: input });
-      dispatch(addDeck({ key, deck: input }));
-      this.props.navigation.navigate('Deck', { key })
-    }*/
+    const { dispatch } = this.props;
+    if (input && input!=='') {
+      const newCard = { key: input, name: input, cards: [] };
+      createDeck(newCard);
+      dispatch(addDeck(newCard));
+      this.props.navigation.navigate('Deck', { name: input })
+    }
   }
 
   deleteDeck(key) {
@@ -70,12 +70,13 @@ class Home extends Component {
   }
 
   renderItem = ({ item }) => {
-    return <DeckCard deck={item} />
+    return <DeckCard deck={item} navigation={this.props.navigation} />
   }
 
   render() {
     const { ready, input } = this.state;
     const { decks } = this.props;
+    //console.log(decks);
     
     if (ready === false) {
       return <AppLoading />;
@@ -88,7 +89,7 @@ class Home extends Component {
           <NewDeckContainer>
             <TextInput 
               value={input}
-              onChange={this.handleTextChange}
+              onChange={evt => this.handleTextChange(evt.nativeEvent.text)}
               placeholder={'Create new deck'}
             />
             <AddDeck onPress={() => this.createNewDeck()}><ButtonText>+</ButtonText></AddDeck>

@@ -16,6 +16,10 @@ export const deleteDeck = async ({ key }) => {
     });
 }
 
-export const fetchDeckResults = () => {
-    return AsyncStorage.getItem(DECK_STORAGE_KEY);
+export const fetchDeckResults = async () => {
+    const decks = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+    if (decks=== '{}' || (Object.entries(decks).length === 0 && decks.constructor === Object)) {
+        return {decks: []};
+    }
+    return decks;
 }
