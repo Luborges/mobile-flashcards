@@ -31,7 +31,6 @@ export const deleteDeck = async ( key ) => {
         const data = JSON.parse(results);
         data[key] = undefined;
         delete data[key];
-        console.log(data);
         AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
     });
 }

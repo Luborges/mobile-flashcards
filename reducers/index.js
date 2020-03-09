@@ -14,7 +14,6 @@ function entries (state = [], action) {
                 name: action.deck.key,
                 cards: action.deck.cards,
             }
-            console.log(newState);
             return newState;
         },
         [REMOVE_DECK]: () => {

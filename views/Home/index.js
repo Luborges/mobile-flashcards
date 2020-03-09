@@ -45,6 +45,8 @@ class Home extends Component {
   }
 
   renderItem = ({ item }, i) => {
+    //console.log('item');
+    //console.log(item);
     const { decks } = this.props;
     return <DeckCard key={'deck'+i} deck={decks[item]} navigation={this.props.navigation} />
   }
@@ -56,6 +58,7 @@ class Home extends Component {
   render() {
     const { ready } = this.state;
     const { decks } = this.props;
+    console.log('render');
     
     if (ready === false) {
       return <AppLoading />;
@@ -83,7 +86,7 @@ class Home extends Component {
 
 function mapStateToProps ({ decks }) {
   const deckList = decks || [];
-
+  console.log('map');
   return {
     decks: deckList,
   }
