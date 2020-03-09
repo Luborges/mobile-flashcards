@@ -6,10 +6,10 @@ import { AppLoading } from 'expo';
 
 // Redux
 import { connect } from 'react-redux';
-import { receiveDecks, removeDeck } from '../../actions';
+import { receiveDecks } from '../../actions';
 
 // Api
-import { fetchDeckResults, deleteDeck } from '../../utils/api';
+import { fetchDeckResults } from '../../utils/api';
 
 // Components
 import DeckCard from '../../components/DeckCard';
@@ -30,7 +30,6 @@ class Home extends Component {
     super(props);
     this.state = {
       ready: true,
-      input: '',
     }
   }
 
@@ -43,12 +42,6 @@ class Home extends Component {
           ready: true,
       })));
     }
-  }
-
-  deleteDeck (key) {
-    deleteDeck().then(() => {
-      dispatch(removeDeck(key));
-    });
   }
 
   renderItem = ({ item }, i) => {
@@ -79,7 +72,8 @@ class Home extends Component {
           </AddDeck>
           <FlatList
             data={Object.keys(decks)}
-            renderItem={this.renderItem}>
+            renderItem={this.renderItem}
+            keyExtractor={(_item, index) => index.toString()}>
           </FlatList>
         </Card>
       </Container>
@@ -88,7 +82,7 @@ class Home extends Component {
 }
 
 function mapStateToProps ({ decks }) {
-  const deckList = decks ? JSON.parse(decks) : [];
+  const deckList = decks || [];
 
   return {
     decks: deckList,

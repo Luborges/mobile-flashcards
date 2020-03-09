@@ -18,6 +18,7 @@ import Deck from './views/Deck';
 import CreateDeck from './views/CreateDeck';
 import CreateCard from './views/CreateCard';
 import Quiz from './views/Quiz';
+import Result from './views/Result';
 
 function FlashcardsStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -26,7 +27,6 @@ function FlashcardsStatusBar ({ backgroundColor, ...props }) {
     </View>
   )
 }
-
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -79,6 +79,18 @@ const MainNavigator = createStackNavigator({
   },
   Quiz: {
     screen: Quiz,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#4c4c6a',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: '#fff',
+      },
+    },
+  },
+  Result: {
+    screen: Result,
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#4c4c6a',

@@ -20,9 +20,11 @@ import {
 
 class Deck extends Component {
   deleteDeck () {
-    const { dispatch } = this.props;
-    deleteDeck(name);
-    dispatch(removeDeck(name));
+    const { dispatch, navigation, name } = this.props;
+    deleteDeck(name).then(() => {
+      dispatch(removeDeck(name));
+      navigation.navigate('Home');
+    });
   }
 
   navigate (path) {
@@ -51,7 +53,7 @@ class Deck extends Component {
                     Start Quiz
                   </ButtonText>
                 </Button>
-                <Button onPress={this.deleteDeck}>
+                <Button onPress={() => this.deleteDeck()}>
                   <ButtonText backgroundColor={'transparent'} color={'#cc0000'} borderColor={'transparent'}>
                     Delete Deck
                   </ButtonText>
@@ -66,7 +68,7 @@ function mapStateToProps ({ decks }, { navigation }) {
     const { name } = navigation.state.params;
     return {
         name,
-        deck: JSON.parse(decks)[name],
+        deck: decks[name],
     }
 }
 

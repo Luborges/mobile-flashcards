@@ -9,30 +9,28 @@ function entries (state = [], action) {
             }
         },
         [ADD_DECK]: () => {
-            const decks = {
-                [action.deck.key]: {
-                    name: action.deck.key,
-                    cards: action.deck.cards,
-                }
-            };
-            return {
-                ...state,
-                decks,
+            const newState = state;
+            newState.decks[action.deck.key] = {
+                name: action.deck.key,
+                cards: action.deck.cards,
             }
+            console.log(newState);
+            return newState;
         },
         [REMOVE_DECK]: () => {
-            return {
-                ...state,
-                ...action.decks.filter((_item, key) => { return key !== action.key })
-            }
+            state.decks[action.key] = undefined;
+            delete state.decks[action.key];
+            return state;
         },
         [ADD_CARD]: () => {
-            const card = {
-                ...state[action.key].cards.push({question: action.question, answer: action.answer})
-            }
+            const { key, card } = action.card;
+            const newCard = state.decks[key];
+            newCard.cards.push(card);
+            
             return {
                 ...state,
-                card
+                ...state.decks,
+                newCard
             }
         }
     }

@@ -29,12 +29,13 @@ class CreateDeck extends Component {
   
   createNewDeck() {
     const { input } = this.state;
-    const { dispatch, decks } = this.props;
+    const { dispatch, decks, navigation } = this.props;
     if (input && input!=='') {
       const newCard = { key: input, cards: [] };
-      createDeck(newCard);
-      dispatch(addDeck(newCard));
-      this.props.navigation.navigate('Home');
+      createDeck(newCard).then(() => {
+        dispatch(addDeck(newCard));
+      });
+      navigation.navigate('Home');
     }
   }
 
@@ -46,9 +47,7 @@ class CreateDeck extends Component {
 
   render() {
     const { input } = this.state;
-    
-    //console.log(decks);
-
+  
     return (
       <Container>
         <Card>

@@ -7,7 +7,3 @@ export const Container = styled.View`
     align-items: center;
     flex-direction: row;
 `;
-
-export const CardQuestion = styled.View`
-    flex: 1;
-`;

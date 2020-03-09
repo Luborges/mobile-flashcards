@@ -19,25 +19,27 @@ import {
   } from './style';
 
 class CreateCard extends Component {
-    constructor () {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             question: '',
             answer: '',
         }
     }
 
-    textChange (name, value) {
-        this.setState({
+    handleTextChange = (name, value) => {
+        this.setState(() => ({
             [name]: value,
-        })
-    }
+        }));
+      }
 
-    createCard () {
-        const { dispatch, name } = this.props;
+    newCard () {
+        const { dispatch, name, navigation } = this.props;
         const { question, answer } = this.state;
-        dispatch(createCard(name, question, answer));
-        addCard({key: name, card: {question, answer}});
+        const card = {key: name, card: {question, answer}};
+        dispatch(createCard(card));
+        addCard(card);
+        navigation.navigate('Deck', { name });
     }
 
     render () {
@@ -46,11 +48,11 @@ class CreateCard extends Component {
             <Container>
                 <Text>Questions</Text>
                 <TextInput placeholder={'Question'} 
-                    value={question} onChange={evt => this.textChange('question', evt.target.value)} />
+                    value={question} onChange={evt => this.handleTextChange('question', evt.nativeEvent.text)} />
                 <Text>Answer</Text>
                 <TextInput placeholder={'Answer'}
-                    value={answer} onChange={evt => this.textChange('answer', evt.target.value)} />
-                <Button onPress={this.createCard}>
+                    value={answer} onChange={evt => this.handleTextChange('answer', evt.nativeEvent.text)} />
+                <Button onPress={() => this.newCard()}>
                   <ButtonText backgroundColor={'#000'} color={'#fff'} borderColor={'#000'}>
                     Submit
                   </ButtonText>

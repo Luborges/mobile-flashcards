@@ -6,7 +6,7 @@ export const ADD_CARD = 'ADD_CARD';
 export function receiveDecks (decks) {
     return {
         type: RECEIVE_DECKS,
-        decks,
+        decks: decks && typeof decks === 'string' ? JSON.parse(decks) : decks,
     }
 }
 
@@ -24,11 +24,9 @@ export function removeDeck (key) {
     }
 }
 
-export function createCard (key, question, answer) {
+export function createCard (card) {
     return {
         type: ADD_CARD,
-        key,
-        question, 
-        answer
+        card
     }
 }
