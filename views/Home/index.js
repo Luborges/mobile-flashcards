@@ -6,10 +6,10 @@ import { AppLoading } from 'expo';
 
 // Redux
 import { connect } from 'react-redux';
-import { receiveDecks, addDeck, removeDeck } from '../../actions';
+import { receiveDecks, removeDeck } from '../../actions';
 
 // Api
-import { createDeck, fetchDeckResults, deleteDeck } from '../../utils/api';
+import { fetchDeckResults, deleteDeck } from '../../utils/api';
 
 // Components
 import DeckCard from '../../components/DeckCard';
@@ -34,7 +34,7 @@ class Home extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount () {
     const { decks, dispatch } = this.props;
     if (decks.length === 0) {
       fetchDeckResults()
@@ -45,15 +45,15 @@ class Home extends Component {
     }
   }
 
-  deleteDeck(key) {
+  deleteDeck (key) {
     deleteDeck().then(() => {
       dispatch(removeDeck(key));
     });
   }
 
-  renderItem = ({ item }) => {
+  renderItem = ({ item }, i) => {
     const { decks } = this.props;
-    return <DeckCard deck={decks[item]} navigation={this.props.navigation} />
+    return <DeckCard key={'deck'+i} deck={decks[item]} navigation={this.props.navigation} />
   }
 
   addDeck = () => {

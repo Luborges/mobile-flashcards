@@ -1,31 +1,27 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-  margin: 10px;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
+    margin: 10px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const Text = styled.Text`
-  flex: 1;
+    width: 200px;
+    margin: 35px 10px 5px 10px;
 `;
 
-export const Title = styled.Text`
-  flex: 1;
-  color: #000;
-  font-weight: 500;
-  font-size: 33px;
+export const TextInput = styled.TextInput`
+    width: 200px;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #000;
 `;
 
 export const AddCard = styled.TouchableOpacity`
   flex: 1;
   margin: 10px 5px;
-`;
-
-export const ButtonContainer = styled.View`
-  flex: 2;
 `;
 
 export const ButtonText = styled.Text`
@@ -39,5 +35,5 @@ export const ButtonText = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  flex: 1;
+    margin-top: 100px;
 `;

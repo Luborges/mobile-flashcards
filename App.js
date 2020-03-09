@@ -16,6 +16,8 @@ import reducer from './reducers';
 import Home from './views/Home';
 import Deck from './views/Deck';
 import CreateDeck from './views/CreateDeck';
+import CreateCard from './views/CreateCard';
+import Quiz from './views/Quiz';
 
 function FlashcardsStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -53,6 +55,30 @@ const MainNavigator = createStackNavigator({
   },
   Deck: {
     screen: Deck,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#4c4c6a',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: '#fff',
+      },
+    },
+  },
+  CreateCard: {
+    screen: CreateCard,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#4c4c6a',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: '#fff',
+      },
+    },
+  },
+  Quiz: {
+    screen: Quiz,
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#4c4c6a',

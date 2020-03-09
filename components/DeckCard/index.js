@@ -13,7 +13,7 @@ const Deck = (props) => {
     const { name, cards } = props.deck;
     
     const gotoDeck = () => {
-        props.navigation.navigate('Deck', { name })
+        props.navigation.navigate('Deck', { name });
     }
 
     return (

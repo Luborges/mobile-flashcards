@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, ADD_DECK, REMOVE_DECK } from '../actions';
+import { RECEIVE_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from '../actions';
 
 function entries (state = [], action) {
     const actions = {
@@ -9,17 +9,12 @@ function entries (state = [], action) {
             }
         },
         [ADD_DECK]: () => {
-            let decks = {
+            const decks = {
                 [action.deck.key]: {
                     name: action.deck.key,
                     cards: action.deck.cards,
                 }
             };
-            console.log({
-                ...state,
-                decks,
-            })
-            console.log('aaa');
             return {
                 ...state,
                 decks,
@@ -29,6 +24,15 @@ function entries (state = [], action) {
             return {
                 ...state,
                 ...action.decks.filter((_item, key) => { return key !== action.key })
+            }
+        },
+        [ADD_CARD]: () => {
+            const card = {
+                ...state[action.key].cards.push({question: action.question, answer: action.answer})
+            }
+            return {
+                ...state,
+                card
             }
         }
     }

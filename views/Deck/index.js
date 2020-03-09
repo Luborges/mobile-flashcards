@@ -1,30 +1,33 @@
 // React
 import React, { Component } from 'react';
 
-// React Native
-import { AppLoading } from 'expo';
-
 // Redux
 import { connect } from 'react-redux';
-import { receiveDecks, addDeck, removeDeck } from '../../actions';
+import { removeDeck } from '../../actions';
 
 // Api
-import { createDeck, fetchDeckResults, deleteDeck } from '../../utils/api';
+import { deleteDeck } from '../../utils/api';
 
 // Styles
 import {
-    Container,
-    Title,
-    Text
+  Button,
+  ButtonContainer,
+  ButtonText,
+  Container,
+  Title,
+  Text
 } from './styles';
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ready: true,
-      input: '',
-    }
+class Deck extends Component {
+  deleteDeck () {
+    const { dispatch } = this.props;
+    deleteDeck(name);
+    dispatch(removeDeck(name));
+  }
+
+  navigate (path) {
+    const { name } = this.props.deck;
+    this.props.navigation.navigate(path, { name });
   }
 
   render () {
@@ -37,7 +40,23 @@ class Home extends Component {
               <Text>
                 cards: {cards.length}
               </Text>
-              
+              <ButtonContainer>
+                <Button onPress={() => this.navigate('CreateCard')}>
+                  <ButtonText backgroundColor={'#fff'} color={'#000'} borderColor={'#000'}>
+                    Add Card
+                  </ButtonText>
+                </Button>
+                <Button onPress={() => this.navigate('Quiz')}>
+                  <ButtonText backgroundColor={'#000'} color={'#fff'} borderColor={'#000'}>
+                    Start Quiz
+                  </ButtonText>
+                </Button>
+                <Button onPress={this.deleteDeck}>
+                  <ButtonText backgroundColor={'transparent'} color={'#cc0000'} borderColor={'transparent'}>
+                    Delete Deck
+                  </ButtonText>
+                </Button>
+              </ButtonContainer>
           </Container>
       )
   }
@@ -50,6 +69,5 @@ function mapStateToProps ({ decks }, { navigation }) {
         deck: JSON.parse(decks)[name],
     }
 }
-  
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Deck);
