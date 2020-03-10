@@ -11,6 +11,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
+import middleware from './middleware';
 
 //Components
 import Home from './views/Home';
@@ -121,7 +122,7 @@ export default class App extends React.Component {
   render() {
     const Layout = createRootNavigator(true);
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, middleware)}>
         <View style={{flex: 1}}>
           <FlashcardsStatusBar backgroundColor={'#4c4c6a'} />
           <Layout />
