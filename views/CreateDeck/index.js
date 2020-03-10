@@ -29,13 +29,13 @@ class CreateDeck extends Component {
   
   createNewDeck() {
     const { input } = this.state;
-    const { dispatch, decks, navigation } = this.props;
+    const { dispatch, navigation } = this.props;
     if (input && input!=='') {
       const newCard = { key: input, cards: [] };
       createDeck(newCard).then(() => {
         dispatch(addDeck(newCard));
+        navigation.navigate('Deck', {name: input});
       });
-      navigation.navigate('Home');
     }
   }
 

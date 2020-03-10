@@ -38,3 +38,13 @@ export const TextButton = styled.Text`
     border-radius: 5px;
     text-align: center;
 `;
+
+export const QuestionNumberText = styled.Text`
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 15px;
+`;
+
+export const QuestionNumberView = styled.View`
+
+`;

@@ -46,7 +46,7 @@ class Home extends Component {
 
   renderItem = ({ item }, i) => {
     const { decks } = this.props;
-    return <DeckCard key={'deck'+i} deck={decks[item]} navigation={this.props.navigation} />
+    return <DeckCard deck={decks[item]} navigation={this.props.navigation} />
   }
 
   addDeck = () => {

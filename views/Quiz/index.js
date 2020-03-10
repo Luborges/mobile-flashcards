@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import CardFlip from '../../components/CardFlip';
+import FlipCard from '../../components/CardFlip';
 
 // Styles
 import {
@@ -14,19 +14,55 @@ import {
     TextEmpty,
     CardView,
     Button,
-    TextButton
+    TextButton,
+    QuestionNumberText,
+    QuestionNumberView
   } from './style';
 
 class Quiz extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            selected: 0,
+            select: 0,
+            rights: 0,
+            wrongs: 0,
         }
     }
 
+    componentWillUnmount() {
+        this.setState({
+            select: 0,
+            rights: 0,
+            wrongs: 0,
+        });
+    }
+
+    componentDidUpdate (prevProps) {
+        if (this.props.navigation !== prevProps.navigation){
+            this.setState({
+                select: 0,
+                rights: 0,
+                wrongs: 0,
+            });
+        }
+    }
+
+    verification (name) {
+        this.setState((prevState) => ({
+            [name]: prevState[name]+1,
+            select: prevState.select+1,
+        }));
+    }
+
     render () {
-        const { deck } = this.props;
+        const { deck, name } = this.props;
+        const { select, rights, wrongs } = this.state;
+        const item = deck.cards[select];
+
+        if (select===deck.cards.length) {
+            return this.props.navigation.navigate('Result', { name, rights, wrongs });
+        }
+
         return (
             <Container>
                 <CardQuestion>
@@ -34,14 +70,17 @@ class Quiz extends Component {
                         deck.cards.length === 0 ?
                             <TextEmpty>Sorry, you cannot take a quiz because there are no cards in the deck.</TextEmpty>
                         :
-                        <CardView>
-                            {deck.cards.map((item, i) => 
-                                <CardFlip key={'card_'+i} answer={item.answer} question={item.question} />)}
-                                <Button><TextButton backgroundColor={'#00cc00'} 
-                                    borderColor={'#00cc00'} color={'#fff'}>Correct</TextButton></Button>
-                                <Button><TextButton backgroundColor={'#cc0000'} 
-                                    borderColor={'#cc0000'} color={'#fff'}>Incorrect</TextButton></Button>
-                        </CardView>
+                        select<deck.cards.length &&
+                            <CardView>
+                                <QuestionNumberView><QuestionNumberText>Question {select +1} of {deck.cards.length}</QuestionNumberText></QuestionNumberView>
+                                <FlipCard answer={item.answer} question={item.question} />
+                                <Button onPress={() => this.verification('rights')}>
+                                    <TextButton backgroundColor={'#00cc00'} 
+                                        borderColor={'#00cc00'} color={'#fff'}>Correct</TextButton></Button>
+                                <Button onPress={() => this.verification('wrongs')}>
+                                    <TextButton backgroundColor={'#cc0000'} 
+                                        borderColor={'#cc0000'} color={'#fff'}>Incorrect</TextButton></Button>
+                            </CardView>
                     }
                 </CardQuestion>
             </Container>
