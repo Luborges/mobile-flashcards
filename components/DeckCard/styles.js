@@ -9,15 +9,14 @@ export const Name = styled.Text`
 `;
 
 export const Total = styled.Text`
-    flex: 1;
-    margin-top: 15px;
+    flex: 2;
+    margin: 10px 0px;
     font-size: 16px;
     color: white;
 `;
 
 export const Card = styled.View`
     width: 200px;
-    height: 90px;
     margin: 15px;
     padding: 5px;
     border: 1px solid #4c4c6a;

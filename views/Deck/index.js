@@ -33,18 +33,14 @@ class Deck extends Component {
   }
 
   render () {
-    if (!this.props.deck) {
-      return this.props.navigation.navigate('Home');
-    }
-
-      const { name, cards } = this.props.deck;
+      const { deck } = this.props;
       return(
           <Container>
               <Title>
-                  Deck: {name}
+                  Deck: {deck && deck.name}
               </Title>
               <Text>
-                cards: {cards.length}
+                cards: {deck && deck.cards.length}
               </Text>
               <ButtonContainer>
                 <Button onPress={() => this.navigate('CreateCard')}>

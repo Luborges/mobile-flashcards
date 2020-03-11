@@ -9,13 +9,9 @@ function entries (state = [], action) {
             }
         },
         [ADD_DECK]: () => {
-            /*const newState = state;
-            newState.decks[action.deck.key] = {
-                name: action.deck.key,
-                cards: action.deck.cards,
-            }*/
             return {
                 ...state,
+                ...state.decks,
                 ...state.decks[action.deck.key] = {
                     name: action.deck.key,
                     cards: action.deck.cards,

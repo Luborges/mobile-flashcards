@@ -32,8 +32,8 @@ class CreateDeck extends Component {
     const { dispatch, navigation } = this.props;
     if (input && input!=='') {
       const newCard = { key: input, cards: [] };
+      dispatch(addDeck(newCard));
       createDeck(newCard).then(() => {
-        dispatch(addDeck(newCard));
         navigation.navigate('Deck', {name: input});
       });
     }
@@ -47,7 +47,7 @@ class CreateDeck extends Component {
 
   render() {
     const { input } = this.state;
-  
+
     return (
       <Container>
         <Card>

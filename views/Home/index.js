@@ -44,10 +44,9 @@ class Home extends Component {
     }
   }
 
-  renderItem = ({ item }, i) => {
-    console.log('name');
+  renderItem = ({ item }) => {
     const { decks } = this.props;
-    return <DeckCard deck={decks[item]} navigation={this.props.navigation} />
+    return <DeckCard deck={decks[item]} navigation={this.props.navigation} />;
   }
 
   addDeck = () => {
@@ -73,6 +72,7 @@ class Home extends Component {
           </AddDeck>
           <FlatList
             data={Object.keys(decks)}
+            extraData={this.props}
             renderItem={this.renderItem}
             keyExtractor={(_item, index) => index.toString()}>
           </FlatList>
@@ -82,10 +82,10 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps ({ decks }) {
-  const deckList = decks || [];
+function mapStateToProps (state) {
   return {
-    decks: deckList
+    decks: state.decks || [],
+    state: state,
   }
 }
 

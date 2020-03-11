@@ -11,7 +11,6 @@ import {
 
 const Deck = (props) => {
     const { name, cards } = props.deck;
-    console.log(name);
     
     const gotoDeck = () => {
         props.navigation.navigate('Deck', { name });

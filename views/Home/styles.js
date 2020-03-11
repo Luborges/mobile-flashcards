@@ -22,7 +22,7 @@ export const Card = styled.View`
 `;
 
 export const FlatList = styled.FlatList`
-  flex: 3;
+  flex: 4;
 `;
 
 export const AddDeck = styled.TouchableOpacity`
