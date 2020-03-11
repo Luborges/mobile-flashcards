@@ -21,6 +21,9 @@ import CreateCard from './views/CreateCard';
 import Quiz from './views/Quiz';
 import Result from './views/Result';
 
+//Helpers
+import { setLocalNotification } from './utils/helpers';
+
 function FlashcardsStatusBar ({ backgroundColor, ...props }) {
   return (
     <View style={{backgroundColor, height: Constants.statusBarHeight}}>
@@ -105,22 +108,26 @@ const MainNavigator = createStackNavigator({
 });
 
 
-const createRootNavigator = logged => {
+const createRootNavigator = () => {
   return createAppContainer(
     createSwitchNavigator(
       {
         Home: {screen: MainNavigator},
       },
       {
-        initialRouteName: logged ? 'Home' : '',
+        initialRouteName: 'Home',
       },
     ),
   );
 };
 
 export default class App extends React.Component {
+  componentDidMount () {
+    setLocalNotification();
+  }
+
   render() {
-    const Layout = createRootNavigator(true);
+    const Layout = createRootNavigator();
     return (
       <Provider store={createStore(reducer, middleware)}>
         <View style={{flex: 1}}>

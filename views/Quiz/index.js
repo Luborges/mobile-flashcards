@@ -19,6 +19,9 @@ import {
     QuestionNumberView
   } from './style';
 
+// Helpers
+import { clearLocalNotification, setLocalNotification } from '../../utils/helpers';
+
 class Quiz extends Component {
     constructor (props) {
         super(props);
@@ -29,39 +32,37 @@ class Quiz extends Component {
         }
     }
 
-    componentWillUnmount() {
-        this.setState({
-            select: 0,
-            rights: 0,
-            wrongs: 0,
-        });
+    verification (nameState) {
+        const { deck } = this.props;
+        this.setState((prevState) => ({
+            [nameState]: prevState[nameState]+1,
+            select: prevState.select+1,
+        }), () => {
+            const { select, rights, wrongs } = this.state;
+            if (select===deck.cards.length) {
+                const { name } = this.props;
+                this.gotoResult(name, rights, wrongs);
+            }
+        });        
     }
 
-    componentDidUpdate (prevProps) {
-        if (this.props.navigation !== prevProps.navigation){
+    gotoResult (name, rights, wrongs) {
+        clearLocalNotification()
+                .then(setLocalNotification);
+
             this.setState({
                 select: 0,
                 rights: 0,
-                wrongs: 0,
+                wrongs: 0,    
+            }, () => {
+                this.props.navigation.navigate('Result', { name, rights, wrongs });
             });
-        }
-    }
-
-    verification (name) {
-        this.setState((prevState) => ({
-            [name]: prevState[name]+1,
-            select: prevState.select+1,
-        }));
     }
 
     render () {
-        const { deck, name } = this.props;
-        const { select, rights, wrongs } = this.state;
+        const { deck } = this.props;
+        const { select } = this.state;
         const item = deck.cards[select];
-
-        if (select===deck.cards.length) {
-            return this.props.navigation.navigate('Result', { name, rights, wrongs });
-        }
 
         return (
             <Container>

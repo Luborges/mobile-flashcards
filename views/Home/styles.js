@@ -26,11 +26,13 @@ export const FlatList = styled.FlatList`
 `;
 
 export const AddDeck = styled.TouchableOpacity`
+  width: 200px;
   margin: 5px;
 `;
 
 export const ButtonText = styled.Text`
   color: white;
+  text-align: center;
 `;
 
 export const ButtonView = styled.View`

@@ -9,17 +9,26 @@ function entries (state = [], action) {
             }
         },
         [ADD_DECK]: () => {
-            const newState = state;
+            /*const newState = state;
             newState.decks[action.deck.key] = {
                 name: action.deck.key,
                 cards: action.deck.cards,
+            }*/
+            return {
+                ...state,
+                ...state.decks[action.deck.key] = {
+                    name: action.deck.key,
+                    cards: action.deck.cards,
+                }
             }
-            return newState;
         },
         [REMOVE_DECK]: () => {
             state.decks[action.key] = undefined;
             delete state.decks[action.key];
-            return state;
+            
+            return {
+                ...state
+            }
         },
         [ADD_CARD]: () => {
             const { key, card } = action.card;

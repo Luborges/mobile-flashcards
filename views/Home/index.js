@@ -45,6 +45,7 @@ class Home extends Component {
   }
 
   renderItem = ({ item }, i) => {
+    console.log('name');
     const { decks } = this.props;
     return <DeckCard deck={decks[item]} navigation={this.props.navigation} />
   }
@@ -84,7 +85,7 @@ class Home extends Component {
 function mapStateToProps ({ decks }) {
   const deckList = decks || [];
   return {
-    decks: deckList,
+    decks: deckList
   }
 }
 

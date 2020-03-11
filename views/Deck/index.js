@@ -33,6 +33,10 @@ class Deck extends Component {
   }
 
   render () {
+    if (!this.props.deck) {
+      return this.props.navigation.navigate('Home');
+    }
+
       const { name, cards } = this.props.deck;
       return(
           <Container>
@@ -68,7 +72,7 @@ function mapStateToProps ({ decks }, { navigation }) {
     const { name } = navigation.state.params;
     return {
         name,
-        deck: decks[name],
+        deck: decks && decks[name],
     }
 }
 
