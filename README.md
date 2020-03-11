@@ -15,6 +15,10 @@ To run this project you must:
   * Install iOS and/or Android Simulator and configured on the computer OR
   * Install [expo](https://docs.expo.io/versions/latest/get-started/installation/) on your mobile device and read the QR code that will show up on the command prompt.
 
+## Device
+
+This application has been developed and tested on a device with the Android OS, therefore can be layout and/or functionality inconsistencies at IOS devices
+
 ## Built With
 
 * [ReactJS](https://reactjs.org/) - The JavaScript library used to create components.
